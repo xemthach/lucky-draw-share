@@ -43,44 +43,57 @@
 
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
                 background: var(--background);
                 color: var(--text-primary);
                 line-height: 1.6;
                 transition: all 0.3s ease;
+                overflow-x: hidden;
+                /* Prevent horizontal scroll */
+            }
+
+            /* Main Layout - Three Zone Flexbox */
+            .main-layout {
+                display: flex;
+                min-height: 100vh;
+                width: 100%;
             }
 
             /* Ad Areas */
             .ads-left,
             .ads-right {
-                position: fixed;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 160px;
-                height: 600px;
+                width: 300px;
+                min-width: 300px;
                 background: var(--surface);
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                padding: 15px;
-                box-shadow: var(--shadow);
-                z-index: 100;
+                border-right: 1px solid var(--border);
+                border-left: 1px solid var(--border);
+                padding: 20px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
             }
 
             .ads-left {
-                left: 20px;
+                border-right: 1px solid var(--border);
+                border-left: none;
             }
 
             .ads-right {
-                right: 20px;
+                border-left: 1px solid var(--border);
+                border-right: none;
             }
 
             .ad-placeholder {
                 text-align: center;
                 color: var(--text-secondary);
                 font-size: 0.9rem;
+                width: 100%;
             }
 
             .ad-placeholder p {
@@ -92,13 +105,21 @@
                 opacity: 0.7;
             }
 
-            /* Adjust main container for ad space */
+            /* Main Content Area */
+            .content-area {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                /* Prevents flex item from overflowing */
+            }
+
+            /* Container adjustments */
             .container {
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
-                margin-left: 200px;
-                margin-right: 200px;
+                width: 100%;
             }
 
             .header {
@@ -477,24 +498,28 @@
             }
 
             /* Hide ads on mobile and adjust layout */
-            @media (max-width: 1024px) {
+            @media (max-width: 768px) {
+                .main-layout {
+                    flex-direction: column;
+                }
 
                 .ads-left,
                 .ads-right {
                     display: none;
                 }
 
+                .content-area {
+                    width: 100%;
+                }
+
                 .container {
-                    margin-left: 20px;
-                    margin-right: 20px;
+                    padding: 15px;
                 }
             }
 
             @media (max-width: 480px) {
                 .container {
                     padding: 10px;
-                    margin-left: 10px;
-                    margin-right: 10px;
                 }
 
                 .header h1 {
@@ -514,51 +539,46 @@
     </head>
 
     <body>
-        <!-- Ad Area - Left Side -->
-        <div class="ads-left">
-            <!-- Insert Google Ads code here -->
-            <div class="ad-placeholder">
-                <p>📢 Advertisement Space</p>
-                <small>Left Side Ad Area</small>
-            </div>
-        </div>
-
-        <!-- Ad Area - Right Side -->
-        <div class="ads-right">
-            <!-- Insert Google Ads code here -->
-            <div class="ad-placeholder">
-                <p>📢 Advertisement Space</p>
-                <small>Right Side Ad Area</small>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="header">
-                <h1 id="appTitle" data-en="appTitle" data-vi="appTitle">🎯 Lucky Draw System</h1>
-                <p id="appSubtitle" data-en="appSubtitle" data-vi="appSubtitle">Fair and secure random selection using
-                    cryptographic randomness</p>
-                <div class="version-info">
-                    <small>v1.0.0 | <a href="https://github.com/xemthach/lucky-draw-share"
-                            target="_blank">GitHub</a></small>
+        <div class="main-layout">
+            <!-- Ad Area - Left Side -->
+            <div class="ads-left">
+                <!-- Insert Google Ads code here -->
+                <div class="ad-placeholder">
+                    <p>📢 Advertisement Space</p>
+                    <small>Left Side Ad Area</small>
                 </div>
             </div>
 
-            <div class="theme-controls">
-                <button class="theme-btn active" onclick="setTheme('light')">☀️ <span data-en="Light"
-                        data-vi="Sáng">Light</span></button>
-                <button class="theme-btn" onclick="setTheme('dark')">🌙 <span data-en="Dark"
-                        data-vi="Tối">Dark</span></button>
-                <button class="theme-btn" onclick="setTheme('festival')">🎉 <span data-en="Festival"
-                        data-vi="Lễ hội">Festival</span></button>
-                <button class="theme-btn" onclick="toggleLanguage()">🌐 <span data-en="Language"
-                        data-vi="Ngôn ngữ">Language</span></button>
-            </div>
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <div class="container">
+                    <div class="header">
+                        <h1 id="appTitle" data-en="appTitle" data-vi="appTitle">🎯 Lucky Draw System</h1>
+                        <p id="appSubtitle" data-en="appSubtitle" data-vi="appSubtitle">Fair and secure random selection
+                            using
+                            cryptographic randomness</p>
+                        <div class="version-info">
+                            <small>v1.0.0 | <a href="https://github.com/xemthach/lucky-draw-share"
+                                    target="_blank">GitHub</a></small>
+                        </div>
+                    </div>
 
-            <div class="controls">
-                <div class="input-section">
-                    <h2 class="section-title">📝 <span data-en="Participants List"
-                            data-vi="Danh sách tham gia">Participants List</span></h2>
-                    <textarea id="participantsInput" data-en-placeholder="Enter participants (one per line):
+                    <div class="theme-controls">
+                        <button class="theme-btn active" onclick="setTheme('light')">☀️ <span data-en="Light"
+                                data-vi="Sáng">Light</span></button>
+                        <button class="theme-btn" onclick="setTheme('dark')">🌙 <span data-en="Dark"
+                                data-vi="Tối">Dark</span></button>
+                        <button class="theme-btn" onclick="setTheme('festival')">🎉 <span data-en="Festival"
+                                data-vi="Lễ hội">Festival</span></button>
+                        <button class="theme-btn" onclick="toggleLanguage()">🌐 <span data-en="Language"
+                                data-vi="Ngôn ngữ">Language</span></button>
+                    </div>
+
+                    <div class="controls">
+                        <div class="input-section">
+                            <h2 class="section-title">📝 <span data-en="Participants List"
+                                    data-vi="Danh sách tham gia">Participants List</span></h2>
+                            <textarea id="participantsInput" data-en-placeholder="Enter participants (one per line):
 John Doe
 Jane Smith
 Mike Johnson
@@ -569,66 +589,80 @@ Trần Thị B
 Lê Văn C
 Phạm Thị D
 ..."></textarea>
-                    <div class="button-group">
-                        <button class="btn btn-primary" onclick="saveList()">💾 <span data-en="Save List"
-                                data-vi="Lưu danh sách">Save List</span></button>
-                        <button class="btn btn-secondary" onclick="clearInput()">🗑️ <span data-en="Clear"
-                                data-vi="Xóa">Clear</span></button>
-                    </div>
-                </div>
-
-                <div class="display-section">
-                    <h2 class="section-title">📊 <span data-en="Current List" data-vi="Danh sách hiện tại">Current
-                            List</span></h2>
-                    <div id="participantsDisplay" class="participants-list">
-                        <p style="color: var(--text-secondary); text-align: center;" data-en="No participants loaded"
-                            data-vi="Chưa có người tham gia">No participants loaded</p>
-                    </div>
-                    <div class="stats">
-                        <div class="stat-card">
-                            <div class="stat-number" id="totalParticipants">0</div>
-                            <div class="stat-label" data-en="Total Participants" data-vi="Tổng số tham gia">Total
-                                Participants</div>
+                            <div class="button-group">
+                                <button class="btn btn-primary" onclick="saveList()">💾 <span data-en="Save List"
+                                        data-vi="Lưu danh sách">Save List</span></button>
+                                <button class="btn btn-secondary" onclick="clearInput()">🗑️ <span data-en="Clear"
+                                        data-vi="Xóa">Clear</span></button>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <div class="stat-number" id="remainingParticipants">0</div>
-                            <div class="stat-label" data-en="Remaining" data-vi="Còn lại">Remaining</div>
+
+                        <div class="display-section">
+                            <h2 class="section-title">📊 <span data-en="Current List"
+                                    data-vi="Danh sách hiện tại">Current
+                                    List</span></h2>
+                            <div id="participantsDisplay" class="participants-list">
+                                <p style="color: var(--text-secondary); text-align: center;"
+                                    data-en="No participants loaded" data-vi="Chưa có người tham gia">No participants
+                                    loaded</p>
+                            </div>
+                            <div class="stats">
+                                <div class="stat-card">
+                                    <div class="stat-number" id="totalParticipants">0</div>
+                                    <div class="stat-label" data-en="Total Participants" data-vi="Tổng số tham gia">
+                                        Total
+                                        Participants</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="remainingParticipants">0</div>
+                                    <div class="stat-label" data-en="Remaining" data-vi="Còn lại">Remaining</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="winner-section hidden" id="winnerSection">
+                        <h2 class="winner-announcement">🎉 <span data-en="CONGRATULATIONS!"
+                                data-vi="CHÚC MỪNG!">CONGRATULATIONS!</span> 🎉</h2>
+                        <div class="winner-name" id="winnerName"></div>
+                        <div class="hash-display" id="resultHash"></div>
+                    </div>
+
+                    <div style="text-align: center; margin: 30px 0;">
+                        <div class="spinner hidden" id="spinner">🎲 <span data-en="Spinning..."
+                                data-vi="Đang quay...">Spinning...</span></div>
+                        <div class="countdown hidden" id="countdown">3</div>
+                        <div class="button-group" style="justify-content: center;">
+                            <button class="btn btn-success" id="spinBtn" onclick="startSpin()" disabled>🎲 <span
+                                    data-en="SPIN!" data-vi="QUAY!">SPIN!</span></button>
+                            <button class="btn btn-secondary" onclick="resetWinners()">🔄 <span data-en="Reset Winners"
+                                    data-vi="Đặt lại người thắng">Reset Winners</span></button>
+                            <button class="btn btn-danger" onclick="resetAll()">🗑️ <span data-en="Reset All"
+                                    data-vi="Đặt lại tất cả">Reset All</span></button>
+                            <button class="btn btn-primary" onclick="exportWinners()">📥 <span data-en="Export Winners"
+                                    data-vi="Xuất người thắng">Export Winners</span></button>
+                            <button class="btn btn-success" onclick="shareWinners()">🔗 <span data-en="Share Winners"
+                                    data-vi="Chia sẻ người thắng">Share Winners</span></button>
+                        </div>
+                    </div>
+
+                    <div class="history-section">
+                        <h2 class="section-title">🏆 <span data-en="Winner History" data-vi="Lịch sử người thắng">Winner
+                                History</span></h2>
+                        <div id="historyList" class="history-list">
+                            <p style="color: var(--text-secondary); text-align: center;" data-en="No winners yet"
+                                data-vi="Chưa có người thắng">No winners yet</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="winner-section hidden" id="winnerSection">
-                <h2 class="winner-announcement">🎉 <span data-en="CONGRATULATIONS!"
-                        data-vi="CHÚC MỪNG!">CONGRATULATIONS!</span> 🎉</h2>
-                <div class="winner-name" id="winnerName"></div>
-                <div class="hash-display" id="resultHash"></div>
-            </div>
-
-            <div style="text-align: center; margin: 30px 0;">
-                <div class="spinner hidden" id="spinner">🎲 <span data-en="Spinning..."
-                        data-vi="Đang quay...">Spinning...</span></div>
-                <div class="countdown hidden" id="countdown">3</div>
-                <div class="button-group" style="justify-content: center;">
-                    <button class="btn btn-success" id="spinBtn" onclick="startSpin()" disabled>🎲 <span data-en="SPIN!"
-                            data-vi="QUAY!">SPIN!</span></button>
-                    <button class="btn btn-secondary" onclick="resetWinners()">🔄 <span data-en="Reset Winners"
-                            data-vi="Đặt lại người thắng">Reset Winners</span></button>
-                    <button class="btn btn-danger" onclick="resetAll()">🗑️ <span data-en="Reset All"
-                            data-vi="Đặt lại tất cả">Reset All</span></button>
-                    <button class="btn btn-primary" onclick="exportWinners()">📥 <span data-en="Export Winners"
-                            data-vi="Xuất người thắng">Export Winners</span></button>
-                    <button class="btn btn-success" onclick="shareWinners()">🔗 <span data-en="Share Winners"
-                            data-vi="Chia sẻ người thắng">Share Winners</span></button>
-                </div>
-            </div>
-
-            <div class="history-section">
-                <h2 class="section-title">🏆 <span data-en="Winner History" data-vi="Lịch sử người thắng">Winner
-                        History</span></h2>
-                <div id="historyList" class="history-list">
-                    <p style="color: var(--text-secondary); text-align: center;" data-en="No winners yet"
-                        data-vi="Chưa có người thắng">No winners yet</p>
+            <!-- Ad Area - Right Side -->
+            <div class="ads-right">
+                <!-- Insert Google Ads code here -->
+                <div class="ad-placeholder">
+                    <p>📢 Advertisement Space</p>
+                    <small>Right Side Ad Area</small>
                 </div>
             </div>
         </div>

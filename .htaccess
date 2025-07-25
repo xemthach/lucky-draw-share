@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Handle /share/{id} routes
+RewriteRule ^share/([a-z0-9]{8})$ /public/share.php [L,QSA]
+
+# Handle API routes
+RewriteRule ^api/save-draw$ /public/api/save-draw.php [L,QSA]
+
+# Serve the main lucky draw app
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ /index.html [L] 

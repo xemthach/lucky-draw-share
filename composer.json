@@ -1,0 +1,21 @@
+{
+    "name": "lucky-draw/api",
+    "description": "Lucky Draw System Backend API",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "cleanup": "php scripts/cleanup.php"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

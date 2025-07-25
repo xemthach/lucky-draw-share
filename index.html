@@ -49,10 +49,56 @@
                 transition: all 0.3s ease;
             }
 
+            /* Ad Areas */
+            .ads-left,
+            .ads-right {
+                position: fixed;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 160px;
+                height: 600px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 15px;
+                box-shadow: var(--shadow);
+                z-index: 100;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .ads-left {
+                left: 20px;
+            }
+
+            .ads-right {
+                right: 20px;
+            }
+
+            .ad-placeholder {
+                text-align: center;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+
+            .ad-placeholder p {
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+
+            .ad-placeholder small {
+                opacity: 0.7;
+            }
+
+            /* Adjust main container for ad space */
             .container {
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
+                margin-left: 200px;
+                margin-right: 200px;
             }
 
             .header {
@@ -70,6 +116,25 @@
             .header p {
                 color: var(--text-secondary);
                 font-size: 1.1rem;
+            }
+
+            .version-info {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .version-info small {
+                color: var(--text-secondary);
+                opacity: 0.7;
+            }
+
+            .version-info a {
+                color: var(--primary);
+                text-decoration: none;
+            }
+
+            .version-info a:hover {
+                text-decoration: underline;
             }
 
             .controls {
@@ -411,9 +476,25 @@
                 }
             }
 
+            /* Hide ads on mobile and adjust layout */
+            @media (max-width: 1024px) {
+
+                .ads-left,
+                .ads-right {
+                    display: none;
+                }
+
+                .container {
+                    margin-left: 20px;
+                    margin-right: 20px;
+                }
+            }
+
             @media (max-width: 480px) {
                 .container {
                     padding: 10px;
+                    margin-left: 10px;
+                    margin-right: 10px;
                 }
 
                 .header h1 {
@@ -433,11 +514,33 @@
     </head>
 
     <body>
+        <!-- Ad Area - Left Side -->
+        <div class="ads-left">
+            <!-- Insert Google Ads code here -->
+            <div class="ad-placeholder">
+                <p>📢 Advertisement Space</p>
+                <small>Left Side Ad Area</small>
+            </div>
+        </div>
+
+        <!-- Ad Area - Right Side -->
+        <div class="ads-right">
+            <!-- Insert Google Ads code here -->
+            <div class="ad-placeholder">
+                <p>📢 Advertisement Space</p>
+                <small>Right Side Ad Area</small>
+            </div>
+        </div>
+
         <div class="container">
             <div class="header">
                 <h1 id="appTitle" data-en="appTitle" data-vi="appTitle">🎯 Lucky Draw System</h1>
                 <p id="appSubtitle" data-en="appSubtitle" data-vi="appSubtitle">Fair and secure random selection using
                     cryptographic randomness</p>
+                <div class="version-info">
+                    <small>v1.0.0 | <a href="https://github.com/xemthach/lucky-draw-share"
+                            target="_blank">GitHub</a></small>
+                </div>
             </div>
 
             <div class="theme-controls">

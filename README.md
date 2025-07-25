@@ -1,6 +1,18 @@
-# 🎯 Lucky Draw System
+# 🎯 Lucky Draw System v1.0.0
 
 A complete lucky draw system with frontend and backend API for sharing results.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)](https://php.net)
+[![Bilingual](https://img.shields.io/badge/Language-EN%20%7C%20VI-green.svg)](https://github.com/xemthach/lucky-draw-share)
+
+## 📢 Ad Integration Ready
+
+This system includes dedicated ad areas for monetization:
+- **Left Side Ad Area** - Fixed position for banner ads
+- **Right Side Ad Area** - Fixed position for banner ads
+- **Mobile Responsive** - Ads hidden on mobile for better UX
+- **Easy Integration** - Just replace placeholder comments with your ad code
 
 ## Features
 
@@ -25,14 +37,34 @@ A complete lucky draw system with frontend and backend API for sharing results.
 
 ## 🚀 Quick Start
 
-### 1. Database Setup
+### Prerequisites
+
+- **PHP 8.1+** with PDO and JSON extensions
+- **MySQL 5.7+** or **MariaDB 10.2+**
+- **Composer** for dependency management
+- **Web Server** (Apache/Nginx)
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/xemthach/lucky-draw-share.git
+cd lucky-draw-share
+```
+
+### 2. Install Dependencies
+
+```bash
+composer install
+```
+
+### 3. Database Setup
 
 ```sql
 -- Create database and table
 mysql -u root -p < database/schema.sql
 ```
 
-### 2. Environment Configuration
+### 4. Environment Configuration
 
 ```bash
 # Copy environment file
@@ -42,12 +74,7 @@ cp .env.example .env
 nano .env
 ```
 
-### 3. Install Dependencies
-
-```bash
-# Install Composer dependencies
-composer install
-```
+### 5. Web Server Configuration
 
 ### 4. Web Server Configuration
 
@@ -200,6 +227,44 @@ The frontend automatically calls the API when you click "Share Winners":
 - **XSS protection** - Output is properly escaped
 - **CORS headers** - API supports cross-origin requests
 - **Rate limiting** - Consider adding rate limiting for production
+
+## 📢 Ad Integration
+
+### Adding Your Ad Code
+
+1. **Open `index.html`** in your editor
+2. **Find the ad areas:**
+   ```html
+   <!-- Ad Area - Left Side -->
+   <div class="ads-left">
+       <!-- Insert Google Ads code here -->
+   </div>
+
+   <!-- Ad Area - Right Side -->
+   <div class="ads-right">
+       <!-- Insert Google Ads code here -->
+   </div>
+   ```
+3. **Replace the placeholder comments** with your ad code:
+   ```html
+   <!-- Example Google AdSense -->
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+        data-ad-slot="XXXXXXXXXX"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+   <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+   ```
+
+### Ad Features
+- **Fixed Position** - Ads stay visible while scrolling
+- **Responsive Design** - Automatically hidden on mobile devices
+- **Non-Intrusive** - Doesn't interfere with main functionality
+- **Easy Management** - Centralized ad placement
 
 ## 🎨 Customization
 

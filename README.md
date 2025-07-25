@@ -1,10 +1,15 @@
 # 🎯 Lucky Draw System v1.0.0
 
-A complete lucky draw system with frontend and backend API for sharing results.
+A complete lucky draw system with a frontend and backend API for sharing results.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)](https://php.net)
 [![Bilingual](https://img.shields.io/badge/Language-EN%20%7C%20VI-green.svg)](https://github.com/xemthach/lucky-draw-share)
+
+![Screenshot](https://github.com/xemthach/lucky-draw-share/blob/main/random-1.jpg)
+![Screenshot](https://github.com/xemthach/lucky-draw-share/blob/main/random-2.jpg)
+![Screenshot](https://github.com/xemthach/lucky-draw-share/blob/main/random-3.jpg)
+![Screenshot](https://github.com/xemthach/lucky-draw-share/blob/main/random-4.jpg)
 
 ## 📢 Ad Integration Ready
 
